@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    buildToolsVersion '25.0.2'
     defaultConfig {
         applicationId "com.yunzhu.eta_android"
         minSdkVersion 21
@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
         externalNativeBuild {
             cmake {
                 cppFlags "-std=c++11"
@@ -18,10 +19,15 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+
     externalNativeBuild {
         cmake {
             path "CMakeLists.txt"
