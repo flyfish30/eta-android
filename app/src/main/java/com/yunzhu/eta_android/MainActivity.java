@@ -3,7 +3,7 @@ package com.yunzhu.eta_android;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
-import Yunzhu.profunctor.android.ActivityImpl;
+import yunzhu.profunctor.textdemo.ActivityImpl;
 
 public class MainActivity extends AppCompatActivity {
 

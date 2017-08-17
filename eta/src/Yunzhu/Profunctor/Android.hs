@@ -29,6 +29,12 @@ data {-# CLASS "android.widget.TextView" #-}
 
 type instance Inherits TextView = '[View]
 
+data {-# CLASS "android.view.SurfaceView" #-}
+  SurfaceView = SurfaceView (Object# SurfaceView)
+  deriving Class
+
+type instance Inherits SurfaceView = '[View]
+
 foreign import java unsafe "@new"
   newTextView :: (c <: Context) => c -> Java a TextView
 
@@ -37,16 +43,4 @@ foreign import java unsafe "setContentView"
 
 foreign import java unsafe "setText"
   setText :: (c <: CharSequence) => c -> Java TextView ()
-
-data {-# CLASS "Yunzhu.profunctor.android.ActivityImpl" #-}
-  ActivityImpl = ActivityImpl (Object# ActivityImpl)
-
-foreign export java "@static startActivity"
-  startActivity :: Activity -> Java ActivityImpl ()
-
-startActivity :: Activity -> Java a ()
-startActivity activity = do
-  textView <- newTextView activity
-  textView <.> setText (foldr S.concat "World!" (replicate 10 "Eta "))
-  activity <.> setContentView textView
 
